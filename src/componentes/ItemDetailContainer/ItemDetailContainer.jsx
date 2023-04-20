@@ -5,7 +5,8 @@ import productsDataBase from "../../data/products";
 import { useParams } from "react-router-dom";
 import Flex from "../Flex/Flex";
 import Counter from "../Counter";
-
+import { useContext } from "react";
+import { cartContext } from "../../context/cartContext";
 function getSingleItem(idURL) {
   const promesa = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -25,6 +26,10 @@ function ItemDetailContainer() {
 
     let { id } = useParams();
 
+
+    const { cart, addItem } = useContext(cartContext);
+
+
   useEffect(() => {
     getSingleItem(id).then((respuesta) => {
       
@@ -33,8 +38,7 @@ function ItemDetailContainer() {
   }, []);
 
   function onAddToCart (count){
-    console.log("agregaste:", count);
-  
+    addItem(product, count);
 
   }
 

@@ -2,7 +2,10 @@ import "./navbar.css";
 import CartWidget from "./CartWidget";
 import  { Link } from "react-router-dom";
 
+
 function Navbar () {
+
+  
 return (
     <div className="container">
 <div className="logo">
