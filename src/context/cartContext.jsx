@@ -12,14 +12,40 @@ function CartProvider(props) {
     setCart(product); */
 
     const newCart = [...cart]; // deep copy/shallow copy
-    //const otroNewCart = cart.map((item) => item);
+  
 
     newCart.push({ ...product, count });
     setCart(newCart);
   }
 
+ //ojo aca
+
+    function getPriceInCart() {
+    // cantidad * precio
+    return 1099;
+  }
+
+   
+
+
+
+
+  //PREGUNTAR!!! CLASE 10: 1:57:11
+
+
+ /* function getCountInCart() {
+    // reduce
+    let total = 0;
+    cart.forEach{
+      
+    };
+
+    return 5;
+  }
+ */
+
     return (
-    <Provider value={{ cart, addItem }}>{props.children}
+    <Provider value={{ cart, addItem, getPriceInCart }}>{props.children}   
     
     </Provider>
     );

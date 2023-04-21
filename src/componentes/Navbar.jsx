@@ -23,6 +23,9 @@ return (
     <Link to="/category/cursospresenciales">Cursos presenciales</Link>
     </li>
     <li>
+      <Link to="/cart">cart</Link>
+    </li>
+    <li>
       <Link to=""><CartWidget/></Link>
     </li>
 

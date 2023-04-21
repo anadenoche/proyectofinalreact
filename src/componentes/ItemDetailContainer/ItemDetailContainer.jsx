@@ -7,6 +7,9 @@ import Flex from "../Flex/Flex";
 import Counter from "../Counter";
 import { useContext } from "react";
 import { cartContext } from "../../context/cartContext";
+
+
+
 function getSingleItem(idURL) {
   const promesa = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -23,6 +26,7 @@ function getSingleItem(idURL) {
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState([]);
+  /*const [addedToCart, setAddedToCart] = useState(false);*/
 
     let { id } = useParams();
 
@@ -37,7 +41,10 @@ function ItemDetailContainer() {
     });
   }, []);
 
+
+
   function onAddToCart (count){
+   /* setaddedToCart = true;*/
     addItem(product, count);
 
   }
@@ -50,6 +57,8 @@ function ItemDetailContainer() {
       <h1>{product.title}</h1>
       <h3>{product.category}</h3>
       <p>Precio: ${product.price}</p>
+   {/* Rendering condicional */}
+      {/* si addedToCart === true? <ItemCount> : <>ir al carrito<> */}
       <Counter onAddToCart={onAddToCart}/>
      
     </div>

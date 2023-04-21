@@ -3,6 +3,7 @@ import Item from "../Item";
 import Flex from "../Flex/Flex";
 import productsDatabase from "../../data/products";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 function getItems() {
   const promesa = new Promise((resolve) => {
@@ -47,6 +48,9 @@ function ItemListContainer() {
   }
   }, [categoryid],);
 
+  if (products.length === 0) {
+    return <Loader/>
+  }
   return (
    
     <Flex>
