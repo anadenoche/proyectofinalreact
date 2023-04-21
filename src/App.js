@@ -8,7 +8,7 @@ import CartContainer from './componentes/CartContainer/CartContainer';
 
 import { CartProvider } from "./context/cartContext";
 
-  
+
 function App() {
   return (
     <>

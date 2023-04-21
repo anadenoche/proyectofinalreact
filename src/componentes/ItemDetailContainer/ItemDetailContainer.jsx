@@ -7,21 +7,8 @@ import Flex from "../Flex/Flex";
 import Counter from "../Counter";
 import { useContext } from "react";
 import { cartContext } from "../../context/cartContext";
+import { getSingleItem } from "../../services/firestore";
 
-
-
-function getSingleItem(idURL) {
-  const promesa = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const encontrado = productsDataBase.find( item => {
-        return (item.id == idURL)
-      })
-      resolve(encontrado);
-    }, 1000);
-  });
-
-  return promesa;
-}
 
 
 function ItemDetailContainer() {
@@ -39,7 +26,7 @@ function ItemDetailContainer() {
       
       setProduct(respuesta);
     });
-  }, []);
+  }, [id]);
 
 
 
@@ -48,7 +35,7 @@ function ItemDetailContainer() {
     addItem(product, count);
 
   }
-
+   
 
   return (
     <Flex>
