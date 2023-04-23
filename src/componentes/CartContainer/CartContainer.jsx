@@ -2,16 +2,17 @@ import React, {useContext} from 'react'
 import { cartContext } from '../../context/cartContext';
 import { createOrder } from '../../services/firestore';
 import { useNavigate } from "react-router-dom";
+import FormCheckout from '../FormCheckout/FormCheckout';
 
 export default function CartContainer() {
    const context = useContext(cartContext);
    const { cart, getTotalPrice } = context;
    const navigateTo = useNavigate();
    
-   async function handleCheckout(){
+   async function handleCheckout(userData){
     const order = {
       items: cart,
-      buyer: {name: "ana"},
+      buyer: userData,
       time: new Date(),
       total: getTotalPrice(),   /*ojo*/
      };
@@ -44,7 +45,7 @@ export default function CartContainer() {
         <br />
         <span>El total de tu compra es: {getTotalPrice()}</span>
         <br />
-        <button onClick={handleCheckout}>Finalizar compra</button>
+        <FormCheckout onCheckout={handleCheckout} />
     </div>
   )
 }
