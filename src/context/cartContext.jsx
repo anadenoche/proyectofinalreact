@@ -20,7 +20,7 @@ function CartProvider(props) {
 
  //ojo aca
 
-    function getPriceInCart() {
+    function getTotalPrice() {
     // cantidad * precio
     return 1099;
   }
@@ -45,7 +45,7 @@ function CartProvider(props) {
  */
 
     return (
-    <Provider value={{ cart, addItem, getPriceInCart }}>{props.children}   
+    <Provider value={{ cart, addItem, getTotalPrice }}>{props.children}   
     
     </Provider>
     );

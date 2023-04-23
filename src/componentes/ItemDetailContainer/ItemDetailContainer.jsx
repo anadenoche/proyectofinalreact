@@ -1,7 +1,6 @@
 
 
 import React, { useState, useEffect } from "react";
-import productsDataBase from "../../data/products";
 import { useParams } from "react-router-dom";
 import Flex from "../Flex/Flex";
 import Counter from "../Counter";
