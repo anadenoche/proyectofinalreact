@@ -4,14 +4,13 @@ import Flex from "../Flex/Flex";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { getItems, getItemsByCategory } from "../../services/firestore";
+import ItemList from "./ItemList";
 
 
 
 
 
 
-
-/*----------*/
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
   const {categoryid} = useParams();
@@ -38,17 +37,7 @@ function ItemListContainer() {
   }
   return (
    
-    <Flex>
-      {products.map((producto) => (
-        <Item
-          key={producto.id}
-          id={producto.id}
-          title={producto.title}
-          price={producto.price}
-          img={producto.img}
-        />
-      ))}
-    </Flex>
+    <ItemList products={products}/>
   );
 }
 

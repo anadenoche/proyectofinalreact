@@ -5,9 +5,12 @@ import { useContext } from "react";
 
 function CartWidget () {
     
-const { cart } = useContext(cartContext);
+const { cart, Total } = useContext(cartContext);
     return (
-        <span role="img" aria-label="cart">🛒<span>{cart.length}</span></span>
+        <span role="img" aria-label="cart">🛒<span>
+            {Total() > 0 && (Total())}
+            </span>
+        </span>
     )
 }
 

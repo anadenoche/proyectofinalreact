@@ -12,7 +12,7 @@ import { getSingleItem } from "../../services/firestore";
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState([]);
-  /*const [addedToCart, setAddedToCart] = useState(false);*/
+  const [addedToCart, setAddedToCart] = useState(false);
 
     let { id } = useParams();
 
@@ -30,9 +30,8 @@ function ItemDetailContainer() {
 
 
   function onAddToCart (count){
-   /* setaddedToCart = true;*/
     addItem(product, count);
-
+    setAddedToCart(true)
   }
    
 

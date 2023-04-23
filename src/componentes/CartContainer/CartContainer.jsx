@@ -2,11 +2,13 @@ import React, {useContext} from 'react'
 import { cartContext } from '../../context/cartContext';
 import { createOrder } from '../../services/firestore';
 import { useNavigate } from "react-router-dom";
+import Flex from '../Flex/Flex';
 import FormCheckout from '../FormCheckout/FormCheckout';
+import { Link } from "react-router-dom";
 
 export default function CartContainer() {
    const context = useContext(cartContext);
-   const { cart, getTotalPrice } = context;
+   const { cart, getTotalPrice, removeItem, clearCart } = context;
    const navigateTo = useNavigate();
    
    async function handleCheckout(userData){
@@ -14,39 +16,53 @@ export default function CartContainer() {
       items: cart,
       buyer: userData,
       time: new Date(),
-      total: getTotalPrice(),   /*ojo*/
+      total: getTotalPrice(),   
      };
 
      const orderId = await createOrder(order);
+
      navigateTo(`/checkout/${orderId}`)
-     
     
+     clearCart()
    }
+//clearCart()
 
 
-
-// rendering condicional. si el carrito está vacio mosntramo un mensaje "volver a home"
-//2 desglose del carrito, mostrar el contenido
-    return (
-    <div>
-        <h1>Tu carrito</h1>
-        {
-            cart.map( item => 
-            <div>
-              <h3>{item.title}</h3>
-              <p>Cantidad: {item.count}</p>
-              <p>precio: {item.price}</p>
-            </div>
-
-            
-        )}
-
-        <br />
-        <br />
-        <span>El total de tu compra es: {getTotalPrice()}</span>
-        <br />
-        <FormCheckout onCheckout={handleCheckout} />
-    </div>
-  )
+return (
+  <Flex>
+<div>
+{cart.length < 1 && 
+<div><h1> Tu carrito está vacío </h1>
+<h3>
+<Link to="/"> Ir a Inicio</Link>
+</h3>
+</div>
 }
- 
+
+
+{cart.length > 0 && ( <div>
+<h1>Tu carrito</h1>
+{
+  cart.map( (item) => 
+  <div>
+   <h1> {item.title} </h1>
+   <p>cantidad: {item.count} </p>
+   <p>precio: ${((item.price)*(item.count)).toFixed(2)} </p>
+   <button onClick={()=> removeItem(item.id)}> remover </button>
+  
+   </div>
+   ) 
+}
+<br />
+<span>El total de tu compra es de: ${getTotalPrice()} </span>
+<br />
+<br />
+<FormCheckout onCheckout={handleCheckout} />
+</div>  )  }
+
+</div>
+</Flex>
+)
+}
+
+
