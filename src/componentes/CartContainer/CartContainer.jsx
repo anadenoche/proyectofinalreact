@@ -25,7 +25,6 @@ export default function CartContainer() {
     
      clearCart()
    }
-//clearCart()
 
 
 return (
@@ -44,7 +43,7 @@ return (
 <h1>Tu carrito</h1>
 {
   cart.map( (item) => 
-  <div>
+  <div style={{ border: "1px solid black" }}>
    <h1> {item.title} </h1>
    <p>cantidad: {item.count} </p>
    <p>precio: ${((item.price)*(item.count)).toFixed(2)} </p>
@@ -54,7 +53,7 @@ return (
    ) 
 }
 <br />
-<span>El total de tu compra es de: ${getTotalPrice()} </span>
+<h2>El total de tu compra es de: <span  style={{ border: "1px solid black" }}> ${getTotalPrice()}  </span></h2>
 <br />
 <br />
 <FormCheckout onCheckout={handleCheckout} />

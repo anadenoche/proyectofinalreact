@@ -32,7 +32,7 @@ export default function FormCheckout({ onCheckout }) {
 
   return (
     <>
-      <h1>Ingresa tus datos para completar la compra 🛍</h1>
+      <h1>❤ Ingresá tus datos para completar la compra ❤</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="label-input">Nombre</label>
