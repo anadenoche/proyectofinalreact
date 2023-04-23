@@ -10,13 +10,12 @@ export default function Counter ({onAddToCart}) {
     }
     }
 
-    function Add() {
 
-        if (count<10){
-            setCount(count + 1)
+    function Add(Item) {
+        if (count < 10) {
+          setCount(count + 1);
         }
-        
-    }
+      }
 
 
     return (
