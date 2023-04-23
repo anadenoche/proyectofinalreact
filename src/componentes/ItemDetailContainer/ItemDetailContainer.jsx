@@ -7,8 +7,8 @@ import Counter from "../Counter";
 import { useContext } from "react";
 import { cartContext } from "../../context/cartContext";
 import { getSingleItem } from "../../services/firestore";
-
-
+import { Link } from "react-router-dom";
+import ItemDetail from "./ItemDetail";
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState([]);
@@ -17,7 +17,7 @@ function ItemDetailContainer() {
     let { id } = useParams();
 
 
-    const { cart, addItem } = useContext(cartContext);
+    const { addItem, getCountInCart } = useContext(cartContext);
 
 
   useEffect(() => {
@@ -38,13 +38,26 @@ function ItemDetailContainer() {
   return (
     <Flex>
     <div>
-      <img src={product.img}></img>
-      <h1>{product.title}</h1>
-      <h3>{product.category}</h3>
-      <p>Precio: ${product.price}</p>
-   {/* Rendering condicional */}
-      {/* si addedToCart === true? <ItemCount> : <>ir al carrito<> */}
-      <Counter onAddToCart={onAddToCart}/>
+    <ItemDetail product={product}/>
+    {
+        addedToCart ? 
+        ( <div>
+          <Link to="/cart"><button> ir al carrito   </button></Link>
+          <Link to="/"><button> volver a inicio </button></Link>
+          </div> 
+        )
+          :
+          (<div>
+            {product.stock < 1 && <small>no está disponible</small> }
+            { product.stock > 0 && 
+           ( <Counter stock={product.stock - getCountInCart} onAddToCart={onAddToCart} />)
+          }
+          </div>)
+      }
+
+
+   
+ 
      
     </div>
     </Flex>
